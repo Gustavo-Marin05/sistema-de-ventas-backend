@@ -34,7 +34,7 @@ export const products = async (req, res) => {
   try {
     const productFound = await Product.find({ user: req.user.id }).populate(
       "user"
-    );
+    ).populate('category');
     res.json(productFound);
   } catch (error) {
     console.log(error);
@@ -45,7 +45,7 @@ export const products = async (req, res) => {
 //nos mostrara solo un producto mandado su id del usuario que inicio secion
 export const product = async (req, res) => {
   try {
-    const getproduct = await Product.findById(req.params.id).populate("user");
+    const getproduct = await Product.findById(req.params.id).populate("user").populate('category');
     if (!getproduct)
       return res.status(404).json(["no se encontro el producto"]);
     res.json(getproduct);
@@ -81,6 +81,6 @@ export const deleteproduct = async (req, res) => {
     return res.sendStatus(204);
   } catch (error) {
     console.log(error);
-    res.status(400).json(["error al borrar el producto"]);
+    res.status(500).json(["error al borrar el producto"]);
   }
 };

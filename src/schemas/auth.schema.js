@@ -6,9 +6,11 @@ export const registerSchema = z.object({
   fullname: z.string({
     required_error: "fullname is required",
   }),
-  username: z.string({
-    required_error: "username is required",
-  }).min(4,{message:'user name must be least 5 characters'}),
+  username: z
+    .string({
+      required_error: "username is required",
+    })
+    .min(4, { message: "user name must be least 5 characters" }),
   password: z
     .string({
       required_error: "password is required",
@@ -17,12 +19,14 @@ export const registerSchema = z.object({
 });
 
 export const loginSchema = z.object({
-    username: z.string({
-        required_error: "username is required",
-      }).min(4,{message:'user name must be least 5 characters'}),
-      password: z
-        .string({
-          required_error: "password is required",
-        })
-        .min(5, { message: "passeord must be at least 6 characteres" }),
+  username: z
+    .string({
+      required_error: "username is required",
+    })
+    .min(4, { message: "user name must be least 5 characters" }),
+  password: z
+    .string({
+      required_error: "password is required",
+    })
+    .min(5, { message: "passeord must be at least 6 characteres" }),
 });
