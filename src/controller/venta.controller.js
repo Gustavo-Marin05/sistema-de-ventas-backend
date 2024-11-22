@@ -61,7 +61,7 @@ export const createVenta = async (req, res) => {
 
     try {
       
-      const ventasFound=await Venta.find({user:req.user.id}).populate('user');
+      const ventasFound=await Venta.find({user:req.user.id});
       if(!ventasFound) return res.status(202).json(['el usuario no tiene ventas'])
       res.json(ventasFound);
       
@@ -73,7 +73,7 @@ export const createVenta = async (req, res) => {
   }
 
 
-  
+
 
 
   
