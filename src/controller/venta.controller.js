@@ -51,3 +51,6 @@ export const createVenta = async (req, res) => {
       res.status(500).json({ error: "Error al procesar la venta." });
     }
   };
+
+
+  
