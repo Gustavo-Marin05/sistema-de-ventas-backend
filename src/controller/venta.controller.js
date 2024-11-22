@@ -1,6 +1,8 @@
 import Venta from "../models/venta.model.js";
 import Product from "../models/product.model.js";
 
+
+//creara las ventas con diferentes productos 
 export const createVenta = async (req, res) => {
     try {
       const { products } = req.body;
@@ -51,6 +53,27 @@ export const createVenta = async (req, res) => {
       res.status(500).json({ error: "Error al procesar la venta." });
     }
   };
+
+
+//nos mostrara todas las ventas que realizo el usuario
+  export const getVenta =async(req,res)=>{
+
+
+    try {
+      
+      const ventasFound=await Venta.find({user:req.user.id}).populate('user');
+      if(!ventasFound) return res.status(202).json(['el usuario no tiene ventas'])
+      res.json(ventasFound);
+      
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(['error al encontrar la venta'])
+      
+    }
+  }
+
+
+  
 
 
   
